@@ -18,7 +18,7 @@
 
         function renderTable1() {
             getValue()
-            var url = "http://localhost:3000/exercicio2"
+            var url = "https://aula-hiae.herokuapp.com/exercicio2"
 
             var request = new Request(url, {
                 method: 'GET'
@@ -29,10 +29,6 @@
                 .then(function (data) {
                     const getTable = document.querySelector('table');
                     const arrNewTr = [];
-
-                    const clickId = (val) => {
-                        alert(val);
-                    };
 
                     const createTr = () => {
                         data.forEach((item, i) => {
@@ -108,7 +104,7 @@
         }
 
         function getValue() {
-            var url = "http://localhost:3000/healthCheck"
+            var url = "https://aula-hiae.herokuapp.com/healthCheck"
             var container = document.getElementById("container")
 
             var request = new Request(url, {
@@ -124,62 +120,62 @@
                 })
         }
 
-        function renderTable() {
-            getValue()
-            var url = "http://localhost:3000/exercicio2"
-            var container = document.getElementById("container")
+        // function renderTable() {
+        //     getValue()
+        //     var url = "https://aula-hiae.herokuapp.com/exercicio2"
+        //     var container = document.getElementById("container")
 
-            var request = new Request(url, {
-                method: 'GET'
-            });
+        //     var request = new Request(url, {
+        //         method: 'GET'
+        //     });
 
-            fetch(request)
-                .then(res => res.json())
-                .then(function (data) {
-                    const getTable = document.querySelector('table');
-                    const arrNewTr = [];
+        //     fetch(request)
+        //         .then(res => res.json())
+        //         .then(function (data) {
+        //             const getTable = document.querySelector('table');
+        //             const arrNewTr = [];
 
-                    const clickId = (val) => {
-                        alert(val);
-                    };
+        //             const clickId = (val) => {
+        //                 alert(val);
+        //             };
 
-                    const createTr = () => {
-                        data.forEach((item, i) => {
-                            arrNewTr.push(`
-                            <tr style="background-color: #fff">
-                            <td>${item.empresa}</td>  
-                            <td>${item.elegiveis}</td>  
-                            <td>${item.valorVida}</td> 
-                            <td>${item.faturado}</td> 
-                            </tr>
-                        `)
-                        });
-                        return arrNewTr.join(' ');
-                    };
+        //             const createTr = () => {
+        //                 data.forEach((item, i) => {
+        //                     arrNewTr.push(`
+        //                     <tr style="background-color: #fff">
+        //                     <td>${item.empresa}</td>  
+        //                     <td>${item.elegiveis}</td>  
+        //                     <td>${item.valorVida}</td> 
+        //                     <td>${item.faturado}</td> 
+        //                     </tr>
+        //                 `)
+        //                 });
+        //                 return arrNewTr.join(' ');
+        //             };
 
-                    const createTable = () => {
-                        return `
-                    <thead>
-                                <th>Empresa</th>
-                                <th>Total de elegiveis</th>
-                                <th>Valor vida por mes</th>
-                                <th>Faturado</th>
-                            </thead>
-                            <tbody>
-                                ${createTr()}
-                            </tbody>
-                `;
-                    };
+        //             const createTable = () => {
+        //                 return `
+        //             <thead>
+        //                         <th>Empresa</th>
+        //                         <th>Total de elegiveis</th>
+        //                         <th>Valor vida por mes</th>
+        //                         <th>Faturado</th>
+        //                     </thead>
+        //                     <tbody>
+        //                         ${createTr()}
+        //                     </tbody>
+        //         `;
+        //             };
 
-                    getTable.innerHTML = createTable();
-                })
+        //             getTable.innerHTML = createTable();
+        //         })
 
 
-                .catch(function (err) {
-                    console.log(err)
-                    // alert("Servidor não encontrado ou offline.")
-                })
-        }
+        //         .catch(function (err) {
+        //             console.log(err)
+        //             // alert("Servidor não encontrado ou offline.")
+        //         })
+        // }
     </script>
 </body>
 

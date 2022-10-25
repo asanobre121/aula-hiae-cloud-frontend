@@ -18,7 +18,7 @@
     <script>
 
         function getValue() {
-            var url = "http://localhost:3000/healthCheck"
+            var url = "https://aula-hiae.herokuapp.com/healthCheck"
             var container = document.getElementById("container")
 
             var request = new Request(url, {
@@ -36,7 +36,7 @@
 
         function renderTable() {
             getValue()
-            var url = "http://localhost:3000/exercicio4"
+            var url = "https://aula-hiae.herokuapp.com/exercicio4"
             var container = document.getElementById("container")
 
             var request = new Request(url, {
@@ -48,10 +48,6 @@
                 .then(function (data) {
                     const getTable = document.querySelector('table');
                     const arrNewTr = [];
-
-                    const clickId = (val) => {
-                        alert(val);
-                    };
 
                     const createTr = () => {
                         data.forEach((item, i) => {

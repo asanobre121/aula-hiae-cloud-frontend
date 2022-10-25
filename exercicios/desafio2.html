@@ -2,18 +2,19 @@
 <meta charset="UTF-8">
 <body onload="">
     <div id="container">
-        <a id="login" href="./exercicio5.html"><---Exercicio Anterior</a>
-        <h1>Desafio #1 - Computacao em nuvem</h1>
+        <a id="login" href="./desafio1.html"><---Desafio #1</a>
+        <h1>Desafio #2 - Computacao em nuvem</h1>
 
 
         <h3>Paciente</h3>
-        <p>Utilize o que voce aprendeu nos exercicios anterios para gerar um alerta na tela com o nome do paciente.</p>
+        <p>Utilize o que voce aprendeu nos exercicios anterios para gerar um alerta na tela com as informacoes detalhadas do paciente.</p>
 
-        <a id="login" href="./desafio2.html">Proximo Exercicio ---></a>
+        <table id="table"></table><br><br>
+        <a id="login" href="./desafio3.html">Desafio #3 ---></a>
     </div>
     <script>
         function getPatientName() {
-            var url = "https://aula-hiae.herokuapp.com/desafio1"
+            var url = "https://aula-hiae.herokuapp.com/desafio2"
             var container = document.getElementById("container")
 
             var request = new Request(url, {

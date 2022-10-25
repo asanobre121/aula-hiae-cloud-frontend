@@ -1,30 +1,35 @@
 <html>
 <meta charset="UTF-8">
+
 <body onload="renderTable()">
     <div id="container">
-        <a id="login" href="./exercicio2.html"><---Exercicio Anterior</a>
-        <h1>Exercicio 3 - Computacao em nuvem</h1>
+        <a id="login" href="./exercicio2.html">
+            <---Exercicio Anterior</a>
+                <h1>Exercicio 3 - Computacao em nuvem</h1>
 
 
-        <h3>Casos de uso</h3>
-        <p>Os alunos de uma universidade entraram em contato com o suporte, alegando que as informacoes de frequencia estao incorretas. A partir do percentual de frequencia de cada aluno defina se ele esta aprovado ou reprovado e considerando o minimo de 70% grife da cor que preferir os alunos que nao atendem esse requisito.
-        </p>
+                <h3>Casos de uso</h3>
+                <p>Os alunos de uma universidade entraram em contato com o suporte, alegando que as informacoes de
+                    frequencia estao incorretas. A partir do percentual de frequencia de cada aluno defina se ele esta
+                    aprovado ou reprovado e considerando o minimo de 70% grife da cor que preferir os alunos que
+                    atendem esse requisito.
+                </p>
 
-        <table id="table"></table><br><br>
+                <table id="table"></table><br><br>
 
-        <a id="login" href="./exercicio4.html">Proximo Exercicio ---></a>
+                <a id="login" href="./exercicio4.html">Proximo Exercicio ---></a>
     </div>
     <script>
 
         function getValue() {
-            var url = "http://localhost:3000/healthCheck"
+            var url = "https://aula-hiae.herokuapp.com/healthCheck"
             var container = document.getElementById("container")
 
             var request = new Request(url, {
                 method: 'GET'
             });
             fetch(request)
-                .then( res => res.json())
+                .then(res => res.json())
                 .then(function (data) {
                     container.style.backgroundColor = data.bgcolor
                 })
@@ -35,7 +40,7 @@
 
         function renderTable() {
             getValue()
-            var url = "http://localhost:3000/exercicio3"
+            var url = "https://aula-hiae.herokuapp.com/exercicio3"
             var container = document.getElementById("container")
 
             var request = new Request(url, {
@@ -48,19 +53,14 @@
                     const getTable = document.querySelector('table');
                     const arrNewTr = [];
 
-                    const clickId = (val) => {
-                        alert(val);
-                    };
-
                     const createTr = () => {
                         data.forEach((item, i) => {
                             arrNewTr.push(`
-                            <tr ${item.aulasTotais * 0.3 <= item.faltas ? 'style="background-color: #FF0000"' : "Aprovado"}>
+                            <tr>
                             <td>${item.nome}</td>  
                             <td>${item.curso}</td>  
                             <td>${item.aulasTotais}</td>
                             <td>${item.faltas}</td>
-                            <td>${item.aulasTotais * 0.3 <= item.faltas ? "Reprovado" : "Aprovado"}</td>
                             </tr>
                         `)
                         });
@@ -74,7 +74,6 @@
                                 <th>Curso</th>
                                 <th>Total de Aulas</th>
                                 <th>Faltas</th>
-                                <th>Status</th>
                             </thead>
                             <tbody>
                                 ${createTr()}

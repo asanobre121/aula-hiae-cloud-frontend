@@ -1,0 +1,39 @@
+<html>
+<meta charset="UTF-8">
+
+<body onload="renderTable()">
+    <div id="container">
+        <a id="login" href="./desafio3.html">
+            <---Desafio #3</a>
+                <h1>Desafio #4 - Computacao em nuvem</h1>
+
+
+                <h3>Lista de compras</h3>
+                <p>Agora é hora de colocar em pratica tudo o que aprendemos nos exercicios anteriores! Programe uma
+                    tabela contendo a lista de compras que enviamos no exercicio anterior.</p>
+
+    </div>
+    <script>
+
+        function renderTable() {
+            var url = "https://aula-hiae.herokuapp.com/desafio4"
+            var container = document.getElementById("container")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+
+            fetch(request)
+                .then(res => res.json())
+                .then(function (data) {
+                    
+                })
+                .catch(function (err) {
+                    console.log(err)
+                    // alert("Servidor não encontrado ou offline.")
+                })
+        }
+    </script>
+</body>
+
+</html>
