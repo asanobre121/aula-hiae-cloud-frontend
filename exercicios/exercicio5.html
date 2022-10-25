@@ -1,0 +1,63 @@
+<html>
+
+<body>
+    <div id="container">
+        <a id="login" href="./exercicio4.html"><---Exercicio Anterior</a>
+        <h1>Exercicio 5 - Computacao em nuvem</h1>
+
+
+        <h3>Lista de compras</h3>
+        <p>Insira até tres itens para a lista de compras.</p>
+
+        <label>Nome: <input required type="text" id="nome" name="nome" placeholder="Seu nome"></label>
+        <label>Presente: <input required type="text" id="presente" name="presente"
+                placeholder="Ex: Celular, computador, cama e etc"></label>
+        <label>Valor: <input required type="number" id="valor" name="valor" placeholder="Ex: 250"></label>
+        <label>Presenteado: <input required type="text" id="presenteado" name="presenteado"
+                placeholder="Ex: Pai, Mae, Filho e etc"></label>
+        <button id="enviar">Enviar</button><br><br>
+
+        <a id="login" href="./desafio.html">Proximo Exercicio ---></a>
+    </div>
+    <script>
+
+        function getValue() {
+            var nome = document.getElementById("nome"),
+                presente = document.getElementById("presente"),
+                valor = document.getElementById("valor"),
+                presenteado = document.getElementById("presenteado")
+
+            if (!nome.value || !presente.value || !valor.value || !presenteado.value) return alert("Preencha todos os campos antes de enviar.")
+            var data = {
+                    nome: nome.value,
+                    presente: presente.value,
+                    valor: valor.value,
+                    presenteado: presenteado.value
+                }
+            let url = "http://localhost:3000/exercicio5"
+            var container = document.getElementById("container")
+            if (url == "") return alert("Insira o endereço a ser verificado.")
+
+            var request = new Request(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            fetch(request)
+                .then(res => res.json())
+                .then(function (data) {
+                    // alert("Cadastrado com sucesso.")
+                })
+                .catch(function (err) {
+                    // alert("Servidor não encontrado ou offline.")
+                })
+        }
+
+
+        document.getElementById("enviar").addEventListener('click', getValue);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<html>
+
+<body onload="renderTable()">
+    <div id="container">
+        <a id="login" href="./exercicio5.html"><---Exercicio Anterior</a>
+        <h1>Desafio - Computacao em nuvem</h1>
+
+
+        <h3>Lista de compras</h3>
+        <p>Agora é hora de colocar em pratica tudo o que aprendemos nos exercicios anteriores! Programe uma tabela contendo a lista de compras que enviamos no exercicio anterior.</p>
+
+        <table id="table"></table><br><br>
+    </div>
+    <script>
+
+        function getValue() {
+            var url = "http://localhost:3000/healthCheck"
+            var container = document.getElementById("container")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+            fetch(request)
+                .then( res => res.json())
+                .then(function (data) {
+                    container.style.backgroundColor = data.bgcolor
+                })
+                .catch(function (err) {
+                    alert("Servidor não encontrado ou offline.")
+                })
+        }
+
+        function renderTable() {
+            getValue()
+            var url = "http://localhost:3000/desafio"
+            var container = document.getElementById("container")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+
+            fetch(request)
+                .then(res => res.json())
+                .then(function (data) {
+                    const getTable = document.querySelector('table');
+                    const arrNewTr = [];
+
+                    const clickId = (val) => {
+                        alert(val);
+                    };
+
+                    const createTr = () => {
+                        data.forEach((item, i) => {
+                            arrNewTr.push(`
+                            <tr>
+                            <td>${item.nome}</td>  
+                            <td>${item.presente}</td>  
+                            <td>R$ ${item.valor}</td>
+                            <td>${item.presenteado}</td>
+                            </tr>
+                        `)
+                        });
+                        return arrNewTr.join(' ');
+                    };
+
+                    const createTable = () => {
+                        return `
+                    <thead>
+                                <th>Nome</th>
+                                <th>Presente</th>
+                                <th>Valor</th>
+                                <th>Presenteado</th>
+                            </thead>
+                            <tbody>
+                                ${createTr()}
+                            </tbody>
+                `;
+                    };
+
+                    getTable.innerHTML = createTable();
+                })
+                .catch(function (err) {
+                    console.log(err)
+                    // alert("Servidor não encontrado ou offline.")
+                })
+        }
+    </script>
+</body>
+
+</html>

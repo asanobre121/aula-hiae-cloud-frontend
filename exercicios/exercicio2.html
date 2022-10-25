@@ -1,0 +1,186 @@
+<html>
+
+<body onload="renderTable1()">
+    <div id="container">
+        <a id="login" href="./exercicio1.html"><---Exercicio Anterior</a>
+        <h1>Exercicio 2 - Computacao em nuvem</h1>
+
+
+        <h3>Casos de uso</h3>
+        <p>Um hospital recebeu notificacoes de alguns de seus clientes informando que ocorreu uma reducao na quantidade de seus beneficiarios elegiveis, com isso, o faturamento incorreto foi encaminhado para os mesmos.
+            Uma vez identificado o ambiente que ocasionou o incidente, resalte na cor vermelha as linhas na tabela que foram faturadas incorretamente </p>
+
+        <table id="table"></table><br><br>
+
+        <a id="login" href="./exercicio3.html">Proximo Exercicio ---></a>
+    </div>
+    <script>
+
+        function renderTable1() {
+            getValue()
+            var url = "http://localhost:3000/exercicio2"
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+
+            fetch(request)
+                .then(res => res.json())
+                .then(function (data) {
+                    const getTable = document.querySelector('table');
+                    const arrNewTr = [];
+
+                    const clickId = (val) => {
+                        alert(val);
+                    };
+
+                    const createTr = () => {
+                        data.forEach((item, i) => {
+                            arrNewTr.push(`
+                            <tr style="background-color: #fff">
+                            <td>${item.empresa}</td>  
+                            <td>${item.elegiveis}</td>  
+                            <td>${item.valorVida}</td> 
+                            <td>${item.faturado}</td> 
+                            </tr>
+                        `)
+                        });
+                        return arrNewTr.join(' ');
+                    };
+
+                    const createTable = () => {
+                        return `
+                    <thead>
+                                <th>Empresa</th>
+                                <th>Total de elegiveis</th>
+                                <th>Valor vida por mes</th>
+                                <th>Faturado</th>
+                            </thead>
+                            <tbody>
+                                <tr ${data[0].elegiveis * data[0].valorVida != data[0].faturado ? 'style="background-color: #FF0000"' : '' }>
+                                <td>${data[0].empresa}</td>  
+                                <td>${data[0].elegiveis}</td>  
+                                <td>R$ ${data[0].valorVida}</td> 
+                                <td>R$ ${data[0].faturado}</td> 
+                                </tr>
+                                <tr>
+                                <td>${data[1].empresa}</td>  
+                                <td>${data[1].elegiveis}</td>  
+                                <td>R$ ${data[1].valorVida}</td> 
+                                <td>R$ ${data[1].faturado}</td> 
+                                </tr>
+                                <tr>
+                                <td>${data[2].empresa}</td>  
+                                <td>${data[2].elegiveis}</td>  
+                                <td>R$ ${data[2].valorVida}</td> 
+                                <td>R$ ${data[2].faturado}</td> 
+                                </tr>
+                                <tr>
+                                <td>${data[3].empresa}</td>  
+                                <td>${data[3].elegiveis}</td>  
+                                <td>R$ ${data[3].valorVida}</td> 
+                                <td>R$ ${data[3].faturado}</td> 
+                                </tr>
+                                <tr>
+                                <td>${data[4].empresa}</td>  
+                                <td>${data[4].elegiveis}</td>  
+                                <td>R$ ${data[4].valorVida}</td> 
+                                <td>R$ ${data[4].faturado}</td> 
+                                </tr>
+                                <tr>
+                                <td>${data[5].empresa}</td>  
+                                <td>${data[5].elegiveis}</td>  
+                                <td>R$ ${data[5].valorVida}</td> 
+                                <td>R$ ${data[5].faturado}</td> 
+                                </tr>
+                            </tbody>
+                `;
+                    };
+
+                    getTable.innerHTML = createTable();
+                })
+
+
+                .catch(function (err) {
+                    console.log(err)
+                    // alert("Servidor não encontrado ou offline.")
+                })
+        }
+
+        function getValue() {
+            var url = "http://localhost:3000/healthCheck"
+            var container = document.getElementById("container")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+            fetch(request)
+                .then( res => res.json())
+                .then(function (data) {
+                    container.style.backgroundColor = data.bgcolor
+                })
+                .catch(function (err) {
+                    alert("Servidor não encontrado ou offline.")
+                })
+        }
+
+        function renderTable() {
+            getValue()
+            var url = "http://localhost:3000/exercicio2"
+            var container = document.getElementById("container")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+
+            fetch(request)
+                .then(res => res.json())
+                .then(function (data) {
+                    const getTable = document.querySelector('table');
+                    const arrNewTr = [];
+
+                    const clickId = (val) => {
+                        alert(val);
+                    };
+
+                    const createTr = () => {
+                        data.forEach((item, i) => {
+                            arrNewTr.push(`
+                            <tr style="background-color: #fff">
+                            <td>${item.empresa}</td>  
+                            <td>${item.elegiveis}</td>  
+                            <td>${item.valorVida}</td> 
+                            <td>${item.faturado}</td> 
+                            </tr>
+                        `)
+                        });
+                        return arrNewTr.join(' ');
+                    };
+
+                    const createTable = () => {
+                        return `
+                    <thead>
+                                <th>Empresa</th>
+                                <th>Total de elegiveis</th>
+                                <th>Valor vida por mes</th>
+                                <th>Faturado</th>
+                            </thead>
+                            <tbody>
+                                ${createTr()}
+                            </tbody>
+                `;
+                    };
+
+                    getTable.innerHTML = createTable();
+                })
+
+
+                .catch(function (err) {
+                    console.log(err)
+                    // alert("Servidor não encontrado ou offline.")
+                })
+        }
+    </script>
+</body>
+
+</html>

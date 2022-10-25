@@ -1,0 +1,45 @@
+<html>
+
+<body>
+    <div id="container">
+    <h1>Computacao em nuvem</h1>
+
+
+    <h3>Validar os ambientes ativos</h3>
+    <p>Nesse exercicio vamos verificar a saude dos ambientes e suas versoes. Para isso basta incluir o endereco do
+        servidor a baixo e clicar em verificar.</p>
+
+        <input type="text" id="check" name="Endereco" placeholder="http://endereco.com/verificar">
+        <button id="verify">Verificar</button><br><br>
+        
+        <a id="login" href="./exercicios/exercicio1.html">Proximo Exercicio ---></a>
+    </div>
+    <script>
+
+        function getValue() {
+            let text = document.getElementById("check")
+            let url = text.value
+            var container = document.getElementById("container")
+            if(url == "") return alert("Insira o endereço a ser verificado.")
+
+            var request = new Request(url, {
+                method: 'GET'
+            });
+            fetch(request)
+                .then( res => res.json())
+                .then(function (data) {
+                    container.style.backgroundColor = data.bgcolor
+                    alert("Status: " + data.status + " Versão: " + data.version + " Ambiente: " + data.env)
+                    console.log(data)
+                })
+                .catch(function (err) {
+                    alert("Servidor não encontrado ou offline.")
+                })
+        }
+
+
+        document.getElementById("verify").addEventListener('click', getValue);
+    </script>
+</body>
+
+</html>
